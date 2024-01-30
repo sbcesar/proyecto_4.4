@@ -1,3 +1,14 @@
+/**
+ * Clase que representa un coche con sus atributos básicos como color, marca, modelo, número de caballos,
+ * número de puertas y matrícula.
+ *
+ * @property color El color del coche.
+ * @property marca La marca del coche.
+ * @property modelo El modelo del coche.
+ * @property nCaballos El número de caballos del coche.
+ * @property nPuertas El número de puertas del coche.
+ * @property matricula La matrícula del coche.
+ */
 class Coche(color: String, marca: String, modelo: String, nCaballos: Int, nPuertas: Int, matricula: String) {
 
     private var color: String = ""
@@ -7,6 +18,16 @@ class Coche(color: String, marca: String, modelo: String, nCaballos: Int, nPuert
     private var nPuertas: Int = 0
     private var matricula: String = ""
 
+    /**
+     * Constructor primario que inicializa los atributos del coche.
+     *
+     * @param color El color del coche.
+     * @param marca La marca del coche.
+     * @param modelo El modelo del coche.
+     * @param nCaballos El número de caballos del coche.
+     * @param nPuertas El número de puertas del coche.
+     * @param matricula La matrícula del coche.
+     */
     init {
         this.color = color
         this.marca = marca
@@ -77,17 +98,30 @@ class Coche(color: String, marca: String, modelo: String, nCaballos: Int, nPuert
         }
     }
 
-    fun validarMatricula(matricula: String): Boolean {
+    /**
+     * Valida la matrícula del coche para asegurarse de que tenga el formato correcto.
+     *
+     * @param matricula La matrícula que se va a validar.
+     * @return `true` si la matrícula tiene el formato correcto, `false` de lo contrario.
+     */
+    private fun validarMatricula(matricula: String): Boolean {
         val primerosCuatro = matricula.substring(0,4)
         val ultimosTres = matricula.substring(4)
 
+        //La matricula debe tener 7 caracteres
         if (matricula.length != 7) {
             return false
         }
 
+        //Los primeros 4 deben ser dígitos y los tres ultimos letras mayusculas
         return primerosCuatro.all { it.isDigit() } && ultimosTres.all { it.isUpperCase() }
     }
 
+    /**
+     * Devuelve una representación de cadena del coche incluyendo su color, marca, modelo, caballos, puertas y matricula.
+     *
+     * @return Representación de cadena del coche.
+     */
     override fun toString(): String {
         return """
         |   Color:      $color
